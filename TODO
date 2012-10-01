@@ -1,4 +1,3 @@
-
 * Compare with Jim Lindsey's "stable" package
   --> http://www.commanster.eu/rcode.html
   Maybe even ask him to make it CRANny
@@ -18,3 +17,10 @@
 
 * [qp] check the  lower.tail & log.p argument settings
   NB: This check *should* happen in  fBasics  'checkdist' ...
+
+* curve(dstable(exp(x), alpha= 0.1, beta=1, pm=1, log=TRUE), -15, 0)
+  very much depends on  zeta.tol ... that should somehow depend on alpha or zeta;
+  --> tests/dstab-ex.R ("beta = 1")
+
+* As easy alternative to  fBasics::stableFit() define one  based
+  on stats4::mle (and possibly also a  quantile-matching alternative).
