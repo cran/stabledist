@@ -1,11 +1,11 @@
 c2c58a679863abcd67877792979fe669 *ChangeLog
-ab76350296205ea97e07e3fe031968a6 *DESCRIPTION
+c98100e625bfe86668cf4cd96db7bb2d *DESCRIPTION
 7d3e7ff2b79545cc1c0c1ef6ce53a2a4 *Done
 1f724acd67d568813a7aa03de6320455 *NAMESPACE
 a2e64d28aa452251d3fa42b5f704624f *R/dist-stableMode.R
-b4400b10899264fd155e6ba7f5a19447 *R/dpqr-stable.R
+d9461f5122b5f0f69fed0d2b5fa96e56 *R/dpqr-stable.R
 35d92d15dabae2fe83b7fc6b672b2318 *R/utils.R
-585ccb16729441f8f48372f1e3e1de5e *TODO
+ea6225772971a76461adc6d158eb9aa2 *TODO
 28247fb9d484e6a8c8f38a424ff54c45 *inst/unitTests/Makefile
 ff3104d4f61550a859a2a275a8d256db *inst/unitTests/runTests.R
 a200a347cdfb3b877002827c19a99b0f *inst/unitTests/runit.StableDistribution.R
@@ -13,6 +13,6 @@ a200a347cdfb3b877002827c19a99b0f *inst/unitTests/runit.StableDistribution.R
 77f10719a6926513d5b473d4ad14a879 *man/dist-stable.Rd
 29fad7aa4bd95d674f1e0e166afadbb2 *man/stableMode.Rd
 fcc086ea9ed8248a4943f4f0a94e5c47 *tests/doRUnit.R
-23df77920c679ab133fd2017b70ed1ce *tests/dstab-ex.R
+b336a1519f0ec57ef56cc78e90b859ab *tests/dstab-ex.R
 460477fc73dd4b18051ffbb1166ef855 *tests/pstab-ex.R
 c9bbe9fe49096caa2e1f2b3c734494d6 *tests/tails.R
