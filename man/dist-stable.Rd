@@ -9,16 +9,22 @@
 \alias{rstable}
 
 \concept{Stable Distribution}
+\encoding{utf-8}
 
 \description{
-    A collection and description of functions to compute
-    density, distribution and quantile function and
-    to generate random variates of the stable distribution.
+  Compute density, distribution and quantile function and
+  to generate random variates of the stable distribution.
 
-    The four functions are:
-    \tabular{ll}{
-      \code{[dpqr]stable} \tab the (skewed) stable distribution.
-    }
+  The four functions are:
+  \tabular{ll}{
+    \code{[dpqr]stable} \tab the (skewed) stable distribution.
+  }
+
+  Three parametrizations via \code{pm = 0, 1,}  or \code{2} \emph{differ} in their
+  meaning of \code{delta} and \code{gamma}, see \sQuote{Details} below.
+  Notably the special cases of the Gaussian / normal distribution for \code{alpha = 2}
+  and Cauchy distribution for \code{alpha = 1} and \code{beta = 0} are
+  easily matched for \code{pm = 2}.
 }
 
 \usage{
@@ -156,13 +162,19 @@ rstable(n, alpha, beta, gamma = 1, delta = 0, pm = 0)
   As we % currently (2011-03-28)
   plan to improve on this, \emph{and}
   as it is unknown when exactly the numerical difficulties arise, we
-  currently only do warn here (in the documentation), but \emph{not} by
-  giving explicit \code{\link{warning}()}s.
+  mainly only warn here in the documentation, and only in some cases,
+  e.g. when the root finding with \code{\link{uniroot}} fails,
+  signal explicit \code{\link{warning}()}s and may return \code{NaN} then.
 }
 \seealso{
   the \code{\link[fBasics]{stableSlider}()} function from package
   \pkg{fBasics} for displaying densities and probabilities of these
   distributions, for educational purposes.
+
+  Royuela del Val et al. (2017) partly show to be uniformly
+  better both accuracy and speed wise than our computations;
+  While their package \pkg{libstableR} is no longer on CRAN, there is
+  \CRANpkg{libstable4u} derived from their implementation.
 }
 \author{
   Diethelm Wuertz for the original Rmetrics \R-port.
@@ -174,10 +186,13 @@ rstable(n, alpha, beta, gamma = 1, delta = 0, pm = 0)
   \emph{A Method for Simulating Stable Random Variables},
   J. Amer. Statist. Assoc. \bold{71}, 340--344.
 
-  John P. Nolan (2012)
-  \emph{Stable Distributions - Models for Heavy Tailed Data}
-  Birkhauser, Boston; in progress, chapter 1 online at
-  \url{http://academic2.american.edu/~jpnolan/stable/chap1.pdf}
+  John P. Nolan (2020)
+  \emph{Univariate Stable Distributions - Models for Heavy Tailed Data}
+  Springer Series in Operations Research and Financial Engineering;
+  \doi{10.1007/978-3-030-52915-4}
+  Much earlier version of chapter 1 available at
+  \url{https://edspace.american.edu/jpnolan/stable/},
+  see  \dQuote{Introduction to Stable Distributions}
 
   Nolan J.P. (1997)
   Numerical calculation of stable densities and distribution functions.
@@ -194,6 +209,12 @@ rstable(n, alpha, beta, gamma = 1, delta = 0, pm = 0)
     \emph{Computer Simulation of Levy alpha-Stable Variables and
     Processes},
     Preprint Technical University of Wroclaw, 13 pages.
+
+  Royuela-del-Val, J., Simmross-Wattenberg, F., and Alberola-López, C. (2017)
+    libstable: Fast, Parallel, and High-Precision Computation of \eqn{\alpha}-Stable
+    Distributions in R, C/C++, and MATLAB.
+    \emph{Journal of Statistical Software} \bold{78}(1), 1--25.
+    \doi{doi:10.18637/jss.v078.i01}
 }
 
 \examples{
@@ -209,7 +230,7 @@ rstable(n, alpha, beta, gamma = 1, delta = 0, pm = 0)
 ## Plot empirical density and compare with true density:
    hist(r, n = 25, probability = TRUE, border = "white",
         col = "steelblue")
-   x <- seq(-5, 5, 0.25)
+   x <- seq(-5, 5, by=1/16)
    lines(x, dstable(x, alpha = 1.9, beta = 0.3, tol= 1e-3), lwd = 2)
 
 ## Plot df and compare with true df:
@@ -233,7 +254,20 @@ axis(1, at = 2, label = expression(delta == 2))
    x. <- -4:4
    px <- pstable(x., alpha = 1.9, beta = 0.3)
   (qs <- qstable(px, alpha = 1.9, beta = 0.3))
-   stopifnot(all.equal(as.vector(qs), x., tol = 1e-5))
+stopifnot(all.equal(as.vector(qs), x., tol = 1e-5))
+
+## Special cases: --- 1. Gaussian  alpha = 2 -----------
+x. <- seq(-5,5, by=1/16)
+stopifnot(
+    all.equal(
+        pnorm  (x.,     m=pi,    sd=1/8),
+        pstable(x., delta=pi, gamma=1/8, alpha = 2, beta = 0, pm = 2) )
+   ,
+##                --- 2. Cauchy  alpha = 1 -----------
+    all.equal(
+        pcauchy(x.),
+        pstable(x., delta=0, gamma=1, alpha = 1, beta = 0, pm = 2) )
+)
 }
 
 \keyword{distribution}

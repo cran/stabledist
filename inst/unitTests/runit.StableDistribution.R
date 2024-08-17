@@ -44,8 +44,8 @@ if(do.stable.rUnitTest <- require("fBasics") &&
    ## need the newer distCheck():
    packageDescription("fBasics")$Version >= package_version("2110.79"))
 {
-    ## fBasics:  for  .distCheck()
-    distCheck <- fBasics:::.distCheck
+    ## fBasics:  for  distCheck()
+    distCheck <- fBasics::distCheck
     environment(distCheck) <- asNamespace("stabledist")
     ## and re-attach "stabledist" as its contents is now masked by fBasics::dstable:
     if((P <- "package:stabledist") %in% search())

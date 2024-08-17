@@ -1,20 +1,31 @@
 Package: stabledist
-Version: 0.7-1
-Date: 2016-09-12
+Version: 0.7-2
+Date: 2024-08-14
 Title: Stable Distribution Functions
-Author: Diethelm Wuertz, Martin Maechler and Rmetrics core team members.
+Authors@R: c(
+  person("Diethelm", "Wuertz", role="aut", comment = "original code"),
+  person("Martin","Maechler", role=c("aut","cre"), email="maechler@stat.math.ethz.ch",
+         comment = c("checks/tests; fixes, ..", ORCID = "0000-0002-8685-9910")),
+  person("Yohan", "Chalabi", role="ctb", comment= "namespace; admin"))
 Maintainer: Martin Maechler <maechler@stat.math.ethz.ch>
 Depends: R (>= 3.1.0)
 Imports: stats
-Suggests: Matrix, fBasics, FMStable, RUnit, Rmpfr, sfsmisc
+Suggests: Matrix, fBasics, FMStable, RUnit, Rmpfr, sfsmisc ,
+        libstable4u
+SuggestsNote: 'libstable4u', based on 'libstableR', is said to be
+        uniformly better both accuracy and speed wise, at least in
+        parts.
 Description: Density, Probability and Quantile functions, and random number
   generation for (skew) stable distributions, using the parametrizations of
   Nolan.
-LazyData: yes
 License: GPL (>= 2)
-URL: http://www.rmetrics.org,
+URL:
         https://r-forge.r-project.org/scm/viewvc.php/pkg/stabledist/?root=rmetrics
 NeedsCompilation: no
-Packaged: 2016-09-12 13:21:29 UTC; maechler
+Packaged: 2024-08-14 08:50:37 UTC; maechler
+Author: Diethelm Wuertz [aut] (original code),
+  Martin Maechler [aut, cre] (checks/tests; fixes, ..,
+    <https://orcid.org/0000-0002-8685-9910>),
+  Yohan Chalabi [ctb] (namespace; admin)
 Repository: CRAN
-Date/Publication: 2016-09-12 20:55:10
+Date/Publication: 2024-08-17 04:50:02 UTC
